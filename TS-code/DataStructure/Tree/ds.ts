@@ -2,25 +2,25 @@
 
 // 二叉树
 // 节点
-export class BinaryTreeNode {
-    public value: number // 值
-    public left: BinaryTreeNode
-    public right: BinaryTreeNode
+export class BinaryTreeNode<T> {
+    public value: T // 值
+    public left: BinaryTreeNode<T>
+    public right: BinaryTreeNode<T>
 
-    constructor(val: any) {
+    constructor(val: T) {
         this.value = val
         this.left = this.right = null
     }
 } 
 
 export class BinaryTreeDataStruct<T> {
-    private root: BinaryTreeNode
+    private root: BinaryTreeNode<T>
 
     constructor() {
         this.root = new BinaryTreeNode(null)
     }
 
-    private insertNode(node:BinaryTreeNode, newNode: BinaryTreeNode): void{
+    private insertNode(node:BinaryTreeNode<T>, newNode: BinaryTreeNode<T>): void{
         if(newNode.value <= node.value){
             if(node.left === null){
                 node.left = newNode
@@ -37,7 +37,7 @@ export class BinaryTreeDataStruct<T> {
     }
 
     // 插入数据
-    public insert(value: any):void {
+    public insert(value: T):void {
         let node = new BinaryTreeNode(value)
         if(this.root.value === null){
             this.root = node
@@ -50,7 +50,7 @@ export class BinaryTreeDataStruct<T> {
         return this.root === null
     }
 
-    private minNode(node: BinaryTreeNode):any {
+    private minNode(node: BinaryTreeNode<T>):T {
         if(node.value){
             while(node.value && node.left !== null){
                 return this.minNode(node.left)
@@ -60,7 +60,7 @@ export class BinaryTreeDataStruct<T> {
         return null
     }
 
-    private maxNode(node: BinaryTreeNode):any {
+    private maxNode(node: BinaryTreeNode<T>):T {
         if(node.value){
             while(node.value && node.right !== null){
                 return this.maxNode(node.right)
@@ -71,16 +71,16 @@ export class BinaryTreeDataStruct<T> {
     }
 
     // 最小值
-    public min(): any {
+    public min(): T {
         return this.minNode(this.root)
     }
 
     // 最大值
-    public max(): any {
+    public max(): T {
         return this.maxNode(this.root)
     }
 
-    private inOrderTraverseNode(node: BinaryTreeNode, fun: CallableFunction): void {
+    private inOrderTraverseNode(node: BinaryTreeNode<T>, fun: CallableFunction): void {
         if(node !== null){
             this.inOrderTraverseNode(node.left, fun)
             fun(node.value)
@@ -88,7 +88,7 @@ export class BinaryTreeDataStruct<T> {
         }
     }
 
-    private preOrderTraverseNode(node: BinaryTreeNode, fun: CallableFunction): void {
+    private preOrderTraverseNode(node: BinaryTreeNode<T>, fun: CallableFunction): void {
         if(node !== null){            
             fun(node.value)
             this.preOrderTraverseNode(node.left, fun)
@@ -96,7 +96,7 @@ export class BinaryTreeDataStruct<T> {
         }
     }
 
-    private postOrderTraverseNode(node: BinaryTreeNode, fun: CallableFunction): void {
+    private postOrderTraverseNode(node: BinaryTreeNode<T>, fun: CallableFunction): void {
         if(node !== null){            
             this.postOrderTraverseNode(node.left, fun)
             this.postOrderTraverseNode(node.right, fun)
@@ -119,7 +119,7 @@ export class BinaryTreeDataStruct<T> {
         this.postOrderTraverseNode(this.root, fun)
     }
 
-    private searchNode(node: BinaryTreeNode, val: any): boolean {
+    private searchNode(node: BinaryTreeNode<T>, val: T): boolean {
         if(node === null) return false
         if(val < node.value) {
             return this.searchNode(node.left, val)
@@ -131,18 +131,18 @@ export class BinaryTreeDataStruct<T> {
     }
 
     // 搜索指定值
-    public search(val: any): boolean {
+    public search(val: T): boolean {
         return this.searchNode(this.root, val)
     }
 
-    private findMinNode(node: BinaryTreeNode) {
+    private findMinNode(node: BinaryTreeNode<T>) {
         while(node && node.left != null) {
             node = node.left
         }
         return node
     }
 
-    private removeNode(node: BinaryTreeNode, val:any):null|BinaryTreeNode {
+    private removeNode(node: BinaryTreeNode<T>, val:T):null|BinaryTreeNode<T> {
         if(node === null) return null
         if(val < node.value){
             node.left = this.removeNode(node.left, val)
@@ -169,7 +169,7 @@ export class BinaryTreeDataStruct<T> {
         }
     }
 
-    public remove(val: any):BinaryTreeNode {
+    public remove(val: T):BinaryTreeNode<T> {
         return this.root = this.removeNode(this.root, val)
     }
 
