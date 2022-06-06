@@ -1,11 +1,4 @@
 "use strict";
 exports.__esModule = true;
-var BM_43_minStack_1 = require("./BM-43.minStack");
-BM_43_minStack_1.push(1);
-BM_43_minStack_1.push(2);
-BM_43_minStack_1.push(3);
-BM_43_minStack_1.push(4);
-console.log(BM_43_minStack_1.arr);
-console.log(BM_43_minStack_1.top());
-console.log(BM_43_minStack_1.pop());
-console.log(BM_43_minStack_1.arr);
+var BM_44_Valid_1 = require("./BM.44.Valid");
+console.log(BM_44_Valid_1.isValid("()[]{}"));
