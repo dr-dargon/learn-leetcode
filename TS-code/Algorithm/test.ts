@@ -1,13 +1,10 @@
-import { Queue } from "./BM-42.Queue";
+import { arr, pop, push, top } from "./BM-43.minStack";
 
-let a = new Queue()
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
-a.push(5)
-console.log(a.pop())
-console.log(a.pop())
-a.push(7)
-a.push(6)
-a.show()
+push(1)
+push(2)
+push(3)
+push(4)
+console.log(arr)
+console.log(top())
+console.log(pop())
+console.log(arr)
