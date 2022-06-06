@@ -1,0 +1,14 @@
+"use strict";
+exports.__esModule = true;
+var BM_42_Queue_1 = require("./BM-42.Queue");
+var a = new BM_42_Queue_1.Queue();
+a.push(1);
+a.push(2);
+a.push(3);
+a.push(4);
+a.push(5);
+console.log(a.pop());
+console.log(a.pop());
+a.push(7);
+a.push(6);
+a.show();
